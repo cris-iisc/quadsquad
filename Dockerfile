@@ -1,6 +1,10 @@
-FROM ubuntu:groovy
+FROM ubuntu:focal
 
 RUN apt-get update
+
+# Ensure tzdata installation (a dependency) is non-interactive.
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Etc/UTC
 RUN apt-get install -y software-properties-common wget build-essential cmake \
     git python3-dev xxd libgmp-dev nlohmann-json3-dev libssl-dev
 RUN apt-get install -y --no-install-recommends libntl-dev
